@@ -1,0 +1,35 @@
+procedure Main();
+var 
+    n, k, i, j: longword;
+    sum: uint64 = 0;
+    arr: array of uint64;
+begin
+    assign(input, 'LOOP.inp');
+    assign(output, 'LOOP.out');
+    reset(input);
+    rewrite(output);
+    readln(n, k);
+    setlength(arr, n);
+    for i := 0 to n - 1 do
+        read(arr[i]);
+    i := 0;
+    while (i < length(arr)) do
+    begin
+        if (arr[i] mod k = 0) then 
+        begin
+            setlength(arr, length(arr) + k);
+            for j := 1 to k do
+                arr[length(arr) - j] := arr[i] div k;
+        end
+        else
+            break;
+        i := i + 1;
+    end;
+    for i := 0 to length(arr) - 1 do
+        sum := sum + arr[i];
+    writeln(sum);
+end;
+
+begin
+    Main
+end.
